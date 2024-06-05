@@ -1,24 +1,78 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Dashboard from "./components/Dashboard";
+import Products from "./components/Products";
+import Profile from "./components/Profile";
+import Navbar from "./components/Navbar";
+import { auth } from "./services/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { signOut } from "firebase/auth";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsAuthenticated(true);
+      } else {
+        setIsAuthenticated(false);
+      }
+    });
+    return unsubscribe;
+  }, [isAuthenticated]);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setIsAuthenticated(false);
+      // Redirect to the login page or any other appropriate page
+      // You can use the navigate function from react-router-dom if needed
+      console.log("User logged out successfully");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Navbar
+          isAuthenticated={isAuthenticated}
+          handleLogout={handleLogout} // Pass handleLogout as prop
+        />
+        <Routes>
+          <Route
+            path="/login"
+            element={
+              <Login
+                isAuthenticated={isAuthenticated}
+                setIsAuthenticated={setIsAuthenticated}
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={<Register setIsAuthenticated={setIsAuthenticated} />}
+          />
+          <Route
+            path="/dashboard"
+            element={
+              isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />
+            }
+          />
+          {/* Add the same protection for other pages as well if needed */}
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="/products" element={<Products/>} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

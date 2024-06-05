@@ -1,0 +1,103 @@
+/* Profile.css */
+.profile-container {
+    width: 350px;
+    margin: 50px auto; /* Top/bottom margin, auto for horizontal centering */
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px; /* More rounded corners */
+    background-color: rgba(249, 249, 249, 0.5); /* Slightly transparent background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .profile-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #ffffff; /* Darker heading color */
+  }
+  
+  .profile-content {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack photo and form vertically */
+    align-items: center; /* Center horizontally */
+  }
+
+  .success-message {
+    color: rgb(29, 255, 29);
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .profile-photo {
+    width: 120px; /* Adjust photo size */
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid #ff0000;
+    overflow: hidden;
+    margin: 10px;
+  }
+  
+  .profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .profile-container form {
+    width: 100%; 
+  }
+  
+  .input-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px; /* Add spacing between fields */
+  }
+  
+  .profile-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .profile-container input[type="text"],
+  .profile-container input[type="email"],
+  .profile-container input[type="tel"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .update-btn{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    transition: background-color 0.3s ease; /* Add transition effect */
+  }
+  
+  .profile-container button {
+    padding: 12px;
+    background-color: #ffdd00; /* Primary color */
+    color: white;
+    border: none;
+    /* border: 1px solid #d30000; */
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease; /* Add transition effect */
+  }
+  
+  .profile-container button:hover {
+    background-color: #ffcc00; /* Darker primary color on hover */
+  }
+
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  
