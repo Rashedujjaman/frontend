@@ -1,0 +1,49 @@
+/* Overall Container Styles */
+.orders-container {
+    width: 80%;
+    margin: 40px auto; /* Center the container */
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+  }
+  
+  .orders-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff; /* Darker heading color */
+  }
+  
+  /* Order List Styles */
+  .order-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Space between cards */
+  }
+  
+  /* Order Card Styles */
+  .order-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    cursor: pointer; /* Indicate that it's clickable */
+    transition: transform 0.2s, box-shadow 0.2s; /* Add hover transitions */
+  }
+  
+  .order-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .order-card h3 {
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .order-card p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  

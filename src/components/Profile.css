@@ -66,6 +66,14 @@
     border-radius: 5px;
     font-size: 16px;
   }
+  .card-actions button {
+    padding: 8px 15px;
+    background-color: #ffd900;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    
+  }
 
   .update-btn{
     color: white;
@@ -91,6 +99,27 @@
   
   .profile-container button:hover {
     background-color: #ffcc00; /* Darker primary color on hover */
+  }
+  .add-product{
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .add-product button{
+    padding: 15px;
+    background-color: #4caf50;
+    margin: 8px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .add-product button:hover{
+      background-color: #45a049;
+    
   }
 
   .error-message {

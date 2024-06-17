@@ -1,0 +1,105 @@
+/* Overall Modal Styles */
+.modal {
+    position: fixed;
+    z-index: 1000; /* Ensure modal is on top of other elements */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Darkened background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    margin: 10vh auto;
+    position: fixed;  /* Fix the modal to the viewport */
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the modal */
+    max-height: 90vh;
+    overflow-y: auto;
+        background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+  }
+
+  .modal-content p{
+    font-size: 16px;
+    color: #333;
+    padding: 4px;
+  }
+  
+
+  
+  .close-btn {
+    color: #888;
+    float: right;
+    font-size: 30px;
+    cursor: pointer;
+    transition: color 0.3s; /* Smooth color transition on hover */
+  }
+  
+  .close-btn:hover {
+    color: #333; /* Darker color on hover */
+  }
+  
+  /* Content Styles */
+  .modal-content h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600; /* Slightly bolder heading */
+    margin-bottom: 20px;
+    color: #212529; /* Dark gray for contrast */
+  }
+  
+  .order-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between detail sections */
+  }
+  
+  .detail-group {
+    background-color: #f8f9fa; /* Subtle background for groups */
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .detail-group strong {
+    display: block; /* Make labels full width */
+    margin-bottom: 5px;
+    color: #495057; /* Gray for labels */
+  }
+  
+  .detail-group p {
+    margin: 0;
+  }
+  
+  .item-list {
+    list-style: none;
+    padding: 0;
+    font-size: 16px;
+  }
+  
+  .item-list li {
+    /* border-bottom: 1px dotted #000000; */
+    padding: 10px 0;
+  }
+  
+  .order-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .item-image {
+    width: 90px; /* Adjust the width as needed */
+    height: 90px; /* Adjust the height as needed */
+    object-fit: cover;
+    margin-right: 30px;
+    border: 1px solid #ed3636; /* Light border */
+  }

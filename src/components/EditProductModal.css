@@ -17,7 +17,7 @@
   padding: 20px;
   border: 1px solid #888;
   width: 60%;
-  max-width: 1000px;
+  max-width: 800px;
   border-radius: 10px;
 }
 
@@ -36,11 +36,54 @@
   cursor: pointer;
 }
 
+.image-selection{
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 15px 0;
+  
+}
+
+.image-selection label{
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+
+.image-preview {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #4caf50;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 /* Form Styles */
 .modal-content h2 {
   text-align: center;
   margin-bottom: 15px;
   color: black;
+}
+
+.modal-content h3 {
+  text-align: center;
+  margin-top: 15px;
+  color: black;
+}
+
+.variant-id{
+  margin-top: 20px;
 }
 
 .modal-content input[type="text"],
@@ -55,17 +98,110 @@
 }
 
 /* Save Button */
-.modal-content button {
+.modal-content .voucher-code-btn{
+  display: flex;
+  justify-content: center;
+}
+
+.modal-content .add-voucher-code {
+  align-items: center;
   background-color: #4caf50;
   color: white;
-  padding: 14px 20px;
+  padding: 10px 16px;
   margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.modal-content .add-voucher-code:hover {
+  background-color: #45a049;
+}
+
+.modal-content .new-variant{
+  background-color: #ffd000;
+  color: white;
+  padding: 10px 20px;
+  margin: 15px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   width: 100%;
 }
-
-.modal-content button:hover {
-  background-color: #45a049;
+.modal-content .new-variant:hover{
+  background-color: #ffe100;
 }
+
+.modal-content .save-changes {
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 15px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.modal-content .save-changes:hover {
+  background-color: #ffd000;
+  color: red;
+}
+
+.modal-content .delete-product-btn{
+  display: flex;
+  justify-content: center;
+
+}
+
+.modal-content .delete-product {
+  background-color: rgb(238, 21, 21);
+  color: white;
+  padding: 10px 20px;
+  margin: 40px 0 20px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: fit-content;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.modal-content .delete-product:hover {
+  background-color: rgb(255, 0, 0);
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  z-index: 9999; /* Ensure the overlay is above other content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-indicator {
+  width: 50px;
+  height: 50px;
+  border: 6px solid rgba(255, 255, 255, 0.2); /* Light border */
+  border-top: 6px solid white; /* Top border for the spinner effect */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+

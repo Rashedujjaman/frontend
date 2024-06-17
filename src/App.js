@@ -8,9 +8,11 @@ import {
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
+import Customers from "./components/Customers";
 import Products from "./components/Products";
 import Profile from "./components/Profile";
 import Navbar from "./components/Navbar";
+import Orders from "./components/Orders";
 import { auth } from "./services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
@@ -48,6 +50,7 @@ function App() {
           handleLogout={handleLogout} // Pass handleLogout as prop
         />
         <Routes>
+        <Route index element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />} />
           <Route
             path="/login"
             element={
@@ -67,9 +70,10 @@ function App() {
               isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />
             }
           />
-          {/* Add the same protection for other pages as well if needed */}
           <Route path="/profile" element={<Profile/>} />
           <Route path="/products" element={<Products/>} />
+          <Route path="/customers" element={<Customers/>} />
+          <Route path="/orders" element={<Orders/>}/>
         </Routes>
       </div>
     </Router>
