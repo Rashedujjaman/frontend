@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar({ isAuthenticated, handleLogout }) {
-  const navigate = useNavigate();
-  const location = useLocation();
 
   return (
     <nav className="navbar">
@@ -12,12 +10,6 @@ function Navbar({ isAuthenticated, handleLogout }) {
         <li>
           <h2>GameSphere BD</h2>
         </li>
-        {/* Conditionally render links based on authentication and current location */}
-        {/* {!isAuthenticated && location.pathname !== "/login" && location.pathname !== "/register" && (
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        )} */}
         {isAuthenticated && ( // Show Dashboard and Logout when authenticated
           <>
             <li>
@@ -28,6 +20,9 @@ function Navbar({ isAuthenticated, handleLogout }) {
             </li>
             <li>
               <Link to="/orders">Orders</Link>
+            </li>
+            <li>
+              <Link to="/report">Report</Link>
             </li>
             <li>
               <Link to="/customers">Customers</Link>
@@ -45,4 +40,3 @@ function Navbar({ isAuthenticated, handleLogout }) {
   );
 }
 export default Navbar;
-

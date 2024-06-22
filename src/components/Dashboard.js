@@ -252,9 +252,9 @@ function Dashboard() {
               />
             ))}
             <LabelList
-              position="outside" // Place labels outside
-              dataKey="value" // Use name as label text
-              fill="#000000" // Set label color to white (or any color of your choice)
+              position="outside" 
+              dataKey="value"
+              fill="#000000"
             />
           </Pie>
           <Tooltip />

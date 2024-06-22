@@ -14,7 +14,8 @@ export default function ProductCard({ product, onEditClick }) {
     <div className="product-card">
       <img src={product.imageUrl} alt={product.name} className="product-image" />
       <h3>{product.name}</h3>
-      <p>Rating: {product.averageRating}</p> {/* Display rating */}
+      <p>Rating: {(product.averageRating || 0).toFixed(1)}</p>
+
       <p>Stock: {calculateStock()}</p> {/* Display stock */}
       <div className="card-actions">
         <button onClick={() => onEditClick(product)}>Update</button>

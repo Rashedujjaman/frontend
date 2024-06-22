@@ -4,38 +4,63 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 
-function Login({setIsAuthenticated}) {
+function Login({ setIsAuthenticated }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(null);
-  // State to store error message
-  const [loading, setLoading] = useState(false); // State to show loading
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(null); // Clear previous errors
-    setLoading(true); // Show loading indicator
+    setError(null);
+    setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setIsAuthenticated(true);
-
-      // Assuming your protected route is '/dashboard'
-      navigate("/dashboard"); // Navigate to the dashboard after successful login
+      navigate("/dashboard");
     } catch (error) {
-      // Handle errors, e.g., wrong credentials
-      console.error("Error logging in:", error);
-      setError(error.message);
+      console.error("Login error: ", error); // Log the error object
+      handleFirebaseError(error);
     } finally {
-      setLoading(false); // Hide loading indicator
+      setLoading(false);
+    }
+  };
+
+  const handleFirebaseError = (error) => {
+    if (error && error.code) {
+      switch (error.code) {
+        case "auth/user-not-found":
+          setError("No user found with this email.");
+          break;
+        case "auth/wrong-password":
+          setError("Incorrect password.");
+          break;
+        case "auth/invalid-email":
+          setError("Invalid email format.");
+          break;
+        case "auth/user-disabled":
+          setError("This user has been disabled.");
+          break;
+        case "auth/invalid-credential":
+          setError("Invalid credentials provided.");
+          break;
+        case "auth/too-many-requests":
+          setError("Too many requests. Please try again later.");
+          break;
+        default:
+          setError(`Unexpected error: ${error.message}`);
+          break;
+      }
+    } else {
+      setError("An unexpected error occurred. Please try again.");
     }
   };
 
   return (
     <div className="login-form">
       <div className="heading">
-      <h1>Login</h1>
+        <h1>Login</h1>
       </div>
       <form onSubmit={handleLogin}>
         <div className="input-field">
@@ -58,12 +83,12 @@ function Login({setIsAuthenticated}) {
             required
           />
         </div>
+        {error && <div className="error-message">{error}</div>}
         <div className="submit-button">
-        <button type="submit" disabled={loading}>
-          Login
-        </button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
         </div>
-
         <div className="register-link">
           Don't have an account? <Link to="/register" className="register-btn">Register</Link>
         </div>

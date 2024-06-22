@@ -13,6 +13,7 @@ import Products from "./components/Products";
 import Profile from "./components/Profile";
 import Navbar from "./components/Navbar";
 import Orders from "./components/Orders";
+import Report from "./components/Report.jsx";
 import { auth } from "./services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
@@ -74,6 +75,7 @@ function App() {
           <Route path="/products" element={<Products/>} />
           <Route path="/customers" element={<Customers/>} />
           <Route path="/orders" element={<Orders/>}/>
+          <Route path="/report" element={<Report/>}/>
         </Routes>
       </div>
     </Router>

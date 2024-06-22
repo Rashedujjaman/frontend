@@ -114,7 +114,7 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
           name: newVariant.name,
           price: newVariant.price,
           amount: newVariant.amount,
-          voucherCodes: newVariant.voucherCodes,
+          voucherCodes:[],
         },
       },
     }));
