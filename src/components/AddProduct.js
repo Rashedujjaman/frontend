@@ -33,6 +33,7 @@ function AddProduct({ onSave, onClose }) {
   };
 
   const handleVariantChange = (variantId, field, value) => {
+    if (field === "price" || field === "amount") value = parseInt(value, 10);
     setFormData((prevState) => ({
       ...prevState,
       variant: {
@@ -79,16 +80,15 @@ function AddProduct({ onSave, onClose }) {
   };
 
   const handleAddVariant = () => {
-    const variantId = `variant-${newVariantId}`;
+    const variantId = newVariantId;
     setFormData((prevState) => ({
       ...prevState,
       variant: {
         ...prevState.variant,
         [variantId]: {
-          id: variantId,
           name: "",
-          price: "",
-          amount: "",
+          price: 0,
+          amount: 0,
           voucherCodes: [""],
         },
       },
@@ -162,65 +162,66 @@ function AddProduct({ onSave, onClose }) {
 
         <h3>Variants:</h3>
         {Object.keys(formData.variant).map((variantId, index) => (
-          <div className="variant" key={variantId}>
-            <label htmlFor={`variant-${index}-id`}>Variant Id:</label>
-            <input
-              type="text"
-              name={`variant-${index}-id`}
-              value={variantId}
-              readOnly
-            />
-            <label htmlFor={`variant-${index}-name`}>Name:</label>
-            <input
-              type="text"
-              name={`variant-${index}-name`}
-              value={formData.variant[variantId].name}
-              onChange={(e) =>
-                handleVariantChange(variantId, "name", e.target.value)
-              }
-            />
-            <label htmlFor={`variant-${index}-price`}>Price:</label>
-            <input
-              type="number"
-              name={`variant-${index}-price`}
-              value={formData.variant[variantId].price}
-              onChange={(e) =>
-                handleVariantChange(variantId, "price", e.target.value)
-              }
-            />
-            <label htmlFor={`variant-${index}-amount`}>Amount:</label>
-            <input
-              type="number"
-              name={`variant-${index}-amount`}
-              value={formData.variant[variantId].amount}
-              onChange={(e) =>
-                handleVariantChange(variantId, "amount", e.target.value)
-              }
-            />
-            <div className="voucher-codes">
-              <label>Voucher Codes:</label>
-              {formData.variant[variantId].voucherCodes.map(
-                (code, codeIndex) => (
-                  <input
-                    key={codeIndex}
-                    type="text"
-                    value={code}
-                    onChange={(e) =>
-                      handleVoucherCodeChange(
-                        variantId,
-                        codeIndex,
-                        e.target.value
-                      )
-                    }
-                  />
-                )
-              )}
-              <button
-                className="add-voucher-code"
-                onClick={() => handleAddVoucherCode(variantId)}
-              >
-                Add Voucher Code
-              </button>
+          <div className="variant-info" key={variantId}>
+            <div className="variant-id">
+              <label> Variant No: {variantId}</label>
+              <button type="button">Cancel</button>
+            </div>
+            <div className="variant-details">
+              <label htmlFor={`variant-${index}-name`}>Name:</label>
+              <input
+                type="text"
+                name={`variant-${index}-name`}
+                value={formData.variant[variantId].name}
+                onChange={(e) =>
+                  handleVariantChange(variantId, "name", e.target.value)
+                }
+              />
+              <label htmlFor={`variant-${index}-price`}>Price:</label>
+              <input
+                type="number"
+                name={`variant-${index}-price`}
+                value={formData.variant[variantId].price}
+                onChange={(e) =>
+                  handleVariantChange(variantId, "price", e.target.value)
+                }
+              />
+              <label htmlFor={`variant-${index}-amount`}>Amount:</label>
+              <input
+                type="number"
+                name={`variant-${index}-amount`}
+                value={formData.variant[variantId].amount}
+                onChange={(e) =>
+                  handleVariantChange(variantId, "amount", e.target.value)
+                }
+              />
+              <div className="voucher-codes">
+                <label>Voucher Codes:</label>
+                {formData.variant[variantId].voucherCodes.map(
+                  (code, codeIndex) => (
+                    <input
+                      key={codeIndex}
+                      type="text"
+                      value={code}
+                      onChange={(e) =>
+                        handleVoucherCodeChange(
+                          variantId,
+                          codeIndex,
+                          e.target.value
+                        )
+                      }
+                    />
+                  )
+                )}
+                <div className="voucher-code-btn">
+                  <button
+                    className="add-voucher-code"
+                    onClick={() => handleAddVoucherCode(variantId)}
+                  >
+                    Add More Voucher Code
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         ))}

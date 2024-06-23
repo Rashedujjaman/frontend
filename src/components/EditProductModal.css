@@ -36,20 +36,18 @@
   cursor: pointer;
 }
 
-.image-selection{
+.image-selection {
   padding-top: 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
   margin: 15px 0;
-  
 }
 
-.image-selection label{
+.image-selection label {
   font-size: 12px;
   margin-top: 8px;
 }
-
 
 .image-preview {
   width: 100px;
@@ -82,8 +80,30 @@
   color: black;
 }
 
-.variant-id{
-  margin-top: 20px;
+.variant-info {
+  border: grey 1px solid;
+  border-radius: 4px;
+  margin: 20px 0px;
+}
+
+.variant-id {
+  margin: 10px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.variant-id button{
+  background-color: rgb(238, 21, 21);
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.variant-details {
+  margin: 10px 30px;
 }
 
 .modal-content input[type="text"],
@@ -98,9 +118,10 @@
 }
 
 /* Save Button */
-.modal-content .voucher-code-btn{
+.modal-content .voucher-code-btn {
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .modal-content .add-voucher-code {
@@ -119,7 +140,7 @@
   background-color: #45a049;
 }
 
-.modal-content .new-variant{
+.modal-content .new-variant {
   background-color: #ffd000;
   color: white;
   padding: 10px 20px;
@@ -129,7 +150,7 @@
   cursor: pointer;
   width: 100%;
 }
-.modal-content .new-variant:hover{
+.modal-content .new-variant:hover {
   background-color: #ffe100;
 }
 
@@ -151,10 +172,9 @@
   color: red;
 }
 
-.modal-content .delete-product-btn{
+.modal-content .delete-product-btn {
   display: flex;
   justify-content: center;
-
 }
 
 .modal-content .delete-product {
@@ -200,8 +220,10 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
-

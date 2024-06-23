@@ -28,10 +28,9 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
   }, [product]);
 
   const [newVariant, setNewVariant] = useState({
-    id: "",
     name: "",
-    price: "",
-    amount: "",
+    price: 0,
+    amount: 0,
     voucherCodes: [],
   });
 
@@ -104,34 +103,36 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
     }));
   };
 
+  // Function to generate a unique variant ID
+  const generateUniqueVariantId = () => {
+    const highestExistingId = Object.keys(formData.variant)
+      .map((id) => parseInt(id.split("-")[1], 10))
+      .reduce((max, current) => Math.max(max, current), 0);
+    return highestExistingId + 1;
+  };
+
   // Add new variant to the form data
   const handleAddVariant = () => {
-    if (!newVariant.id) {
-      alert("Variant ID cannot be empty");
-      return;
-    }
-
+    const variantId = generateUniqueVariantId();
     setFormData((prevFormData) => ({
       ...prevFormData,
       variant: {
         ...prevFormData.variant,
-        [newVariant.id]: {
+        [variantId]: {
           name: newVariant.name,
-          price: newVariant.price,
-          amount: newVariant.amount,
+          price: parseInt(newVariant.price, 10) || 0,
+          amount: parseInt(newVariant.amount, 10) || 0,
           voucherCodes: newVariant.voucherCodes,
         },
       },
     }));
 
     setNewVariant({
-      id: "",
       name: "",
-      price: "",
-      amount: "",
+      price: 0,
+      amount: 0,
       voucherCodes: [],
     });
-
     setShowAddVariantForm(false);
   };
 
@@ -169,6 +170,19 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  //Handle Delete Variant
+  const handleDeleteVariant = (variantId) => {
+    setFormData((prevFormData) => {
+      const updatedVariants = { ...prevFormData.variant };
+      delete updatedVariants[variantId];
+
+      return {
+        ...prevFormData,
+        variant: updatedVariants,
+      };
+    });
   };
 
   const handleDelete = async () => {
@@ -267,62 +281,67 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
                   <div className="variant-id">
                     <label htmlFor={`variant.${variant}.id`}>
                       {" "}
-                      Variant ID:{" "}
+                      Variant No: {variant}
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteVariant(variant)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                  <div className="variant-details">
+                    <label htmlFor={`variant.${variant}.name`}>
+                      Variant Name:
                     </label>
                     <input
                       type="text"
-                      name={`variant.${variant}.id`}
-                      value={variantIdChanges[variant] || variant} // Display the current variant ID
-                      onChange={
-                        (e) =>
-                          handleVariantChange(variant, "newId", e.target.value) // Use a temporary key to handle the change
-                      }
-                    />
-                  </div>
-                  <label htmlFor={`variant.${variant}.name`}>
-                    Variant Name:
-                  </label>
-                  <input
-                    type="text"
-                    name={`variant.${variant}.name`}
-                    value={formData.variant[variant].name}
-                    onChange={(e) =>
-                      handleVariantChange(variant, "name", e.target.value)
-                    }
-                  />
-                  <label htmlFor={`variant.${variant}.price`}>Price:</label>
-                  <input
-                    type="number"
-                    name={`variant.${variant}.price`}
-                    value={formData.variant[variant].price}
-                    onChange={(e) =>
-                      handleVariantChange(variant, "price", e.target.value)
-                    }
-                  />
-                  <label htmlFor={`variant.${variant}.amount`}>
-                    Value Amount:
-                  </label>
-                  <input
-                    type="number"
-                    name={`variant.${variant}.amount`}
-                    value={formData.variant[variant].amount}
-                    onChange={(e) =>
-                      handleVariantChange(variant, "amount", e.target.value)
-                    }
-                  />
-                  <label htmlFor="new-variant-voucherCodes">
-                    Voucher Codes:
-                  </label>
-                  {formData.variant[variant].voucherCodes.map((code, index) => (
-                    <input
-                      key={index}
-                      type="text"
-                      value={code}
+                      name={`variant.${variant}.name`}
+                      value={formData.variant[variant].name}
                       onChange={(e) =>
-                        handleVoucherCodeChange(variant, index, e.target.value)
+                        handleVariantChange(variant, "name", e.target.value)
                       }
                     />
-                  ))}
+                    <label htmlFor={`variant.${variant}.price`}>Price:</label>
+                    <input
+                      type="number"
+                      name={`variant.${variant}.price`}
+                      value={formData.variant[variant].price}
+                      onChange={(e) =>
+                        handleVariantChange(variant, "price", e.target.value)
+                      }
+                    />
+                    <label htmlFor={`variant.${variant}.amount`}>
+                      Value Amount:
+                    </label>
+                    <input
+                      type="number"
+                      name={`variant.${variant}.amount`}
+                      value={formData.variant[variant].amount}
+                      onChange={(e) =>
+                        handleVariantChange(variant, "amount", e.target.value)
+                      }
+                    />
+                    <label htmlFor="new-variant-voucherCodes">
+                      Voucher Codes:
+                    </label>
+                    {formData.variant[variant].voucherCodes.map(
+                      (code, index) => (
+                        <input
+                          key={index}
+                          type="text"
+                          value={code}
+                          onChange={(e) =>
+                            handleVoucherCodeChange(
+                              variant,
+                              index,
+                              e.target.value
+                            )
+                          }
+                        />
+                      )
+                    )}
+                  </div>
                   <div className="voucher-code-btn">
                     <button
                       className="add-voucher-code"
@@ -360,7 +379,7 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
                 alignItems: "center",
               }}
             >
-              <label htmlFor="new-variant-id">Variant ID:</label>
+              <label htmlFor="new-variant-id">Variant No:</label>
               <button type="button" onClick={handleToggleAddVariantForm}>
                 {showAddVariantForm ? "Cancel" : "Add New Variant"}
               </button>
@@ -369,8 +388,8 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
             <input
               type="text"
               name="new-variant-id"
-              value={newVariant.id}
-              onChange={(e) => handleNewVariantChange("id", e.target.value)}
+              value={generateUniqueVariantId()}
+              disabled
             />
             <label htmlFor="new-variant-name">Variant Name:</label>
             <input
