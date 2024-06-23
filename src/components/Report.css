@@ -1,5 +1,5 @@
 .report-container {
-  padding: 20px;
+  padding: 50px;
   font-family: Arial, sans-serif;
   background-color: rgb(245, 245, 245, 0.4);
 }
@@ -14,6 +14,9 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  background: linear-gradient(to left, rgba(1, 1, 1, .5), rgba(1, 1, 1, .25));
+  padding: 10px 10px;
+  border-radius: 10px;
 }
 
 .date-filters input {
@@ -27,7 +30,7 @@
 .date-filters button {
   padding: 10px 20px;
   font-size: 16px;
-  margin-right: 10px;
+
 }
 
 .csvLink {
@@ -35,10 +38,11 @@
   font-size: 16px;
   text-decoration: none;
   color: white;
-  background-color: #3f51b5;
+  background-color: blue;
   border-radius: 4px;
   text-align: center;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
 }
 
 .loading {
@@ -79,34 +83,38 @@
 .report-container .MuiDataGrid-root .MuiDataGrid-cell.Mui-selected {
   color: inherit !important; /* Inherit the original text color */
 }
+
 /* Chart Styles */
 .chart-container {
-    display: grid;
-    margin-top: 30px;
-    grid-template-columns: repeat(auto-fit, minmax(800px, 1fr)); /* Responsive columns */
-    gap: 20px;
-  }
-  
-  .chart-section {
-    background-color: #fff; /* White background for charts */
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  }
-  
-  .chart-section h3 {
-    margin-top: 0; /* Remove extra top margin */
-  }
-  
-  /* Recharts Chart Overrides */
-  .recharts-default-tooltip {
-    background-color: #fff !important;
-    border: 1px solid #ccc !important;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
-    padding: 10px !important;
-    font-size: 14px !important;
-  }
-  
-  .recharts-pie-label-text {
-    fill: #333 !important; /* Dark text for pie chart labels */
-  }
+  display: grid;
+  margin-top: 30px;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(800px, 1fr)
+  ); /* Responsive columns */
+  gap: 20px;
+}
+
+.chart-section {
+  background-color: #fff; /* White background for charts */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.chart-section h3 {
+  margin-top: 0; /* Remove extra top margin */
+}
+
+/* Recharts Chart Overrides */
+.recharts-default-tooltip {
+  background-color: #fff !important;
+  border: 1px solid #ccc !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+  padding: 10px !important;
+  font-size: 14px !important;
+}
+
+.recharts-pie-label-text {
+  fill: #333 !important; /* Dark text for pie chart labels */
+}

@@ -17,8 +17,6 @@ import Alert from "@mui/material/Alert";
 import { CircularProgress } from "@mui/material";
 import "./Report.css";
 import {
-  PieChart,
-  Pie,
   Cell,
   BarChart,
   Bar,
@@ -186,7 +184,7 @@ function Report() {
 
   return (
     <div className="report-container">
-      <h3 className="report-header">Sales Report</h3>
+      <h2 className="report-header">Sales Report</h2>
 
       <div className="date-filters">
         <input
@@ -266,7 +264,7 @@ function Report() {
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={topSellingProductsData}> 
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="productName" />   {/* Use 'name' for X-axis labels */}
+                <XAxis dataKey="productName" />
                 <YAxis />
                 <Tooltip />
                 <Legend />

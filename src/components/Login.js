@@ -92,6 +92,9 @@ function Login({ setIsAuthenticated }) {
         <div className="register-link">
           Don't have an account? <Link to="/register" className="register-btn">Register</Link>
         </div>
+        <div className="forgot-password">
+          <Link className="forgot-password-btn" to="/forgot-password">Forgot password?</Link>
+        </div>
       </form>
     </div>
   );

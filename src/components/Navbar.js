@@ -8,7 +8,7 @@ function Navbar({ isAuthenticated, handleLogout }) {
     <nav className="navbar">
       <ul>
         <li>
-          <h2>GameSphere BD</h2>
+          <h2>GameSphere BD Admin</h2>
         </li>
         {isAuthenticated && ( // Show Dashboard and Logout when authenticated
           <>

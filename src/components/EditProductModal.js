@@ -106,6 +106,11 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
 
   // Add new variant to the form data
   const handleAddVariant = () => {
+    if (!newVariant.id) {
+      alert("Variant ID cannot be empty");
+      return;
+    }
+
     setFormData((prevFormData) => ({
       ...prevFormData,
       variant: {
@@ -114,7 +119,7 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
           name: newVariant.name,
           price: newVariant.price,
           amount: newVariant.amount,
-          voucherCodes:[],
+          voucherCodes: newVariant.voucherCodes,
         },
       },
     }));
@@ -126,6 +131,8 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
       amount: "",
       voucherCodes: [],
     });
+
+    setShowAddVariantForm(false);
   };
 
   const handleSave = async () => {
@@ -198,12 +205,6 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
       setLoadingDelete(false);
     }
   };
-
-  // return(
-  //   <div>{loadingDelete || loadingSave ? (
-  //     <div className="loading-indicator">Loading...</div>
-  //   ) : null}</div>
-  // )
 
   return (
     <div className="modal">
@@ -338,6 +339,10 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
                   <p>Price: {formData.variant[variant].price}</p>
                   <p>Amount: {formData.variant[variant].amount}</p>
                   {/* ... (display voucher codes) */}
+                  {/* <p>
+                    Voucher Codes:{" "}
+                    {formData.variant[variant].voucherCodes.join(", ")}
+                  </p> */}
                 </>
               )}
             </div>
@@ -347,7 +352,20 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
         </button>
         {showAddVariantForm && (
           <div className="new-variant-form">
-            <label htmlFor="new-variant-id">Variant ID:</label>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <label htmlFor="new-variant-id">Variant ID:</label>
+              <button type="button" onClick={handleToggleAddVariantForm}>
+                {showAddVariantForm ? "Cancel" : "Add New Variant"}
+              </button>
+            </div>
+
             <input
               type="text"
               name="new-variant-id"
@@ -395,7 +413,7 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
 
         <div
           className="loading-overlay"
-          style={{ display: loadingDelete? "flex" : "none" }}
+          style={{ display: loadingDelete ? "flex" : "none" }}
         >
           <div className="loading-indicator">Loading</div>
         </div>
@@ -405,12 +423,10 @@ function EditProductModal({ product, onClose, onSave, onDelete }) {
         </button>
 
         <div className="delete-product-btn">
-        <button className="delete-product" onClick={handleDelete}>
-          Delete Product
-        </button>
+          <button className="delete-product" onClick={handleDelete}>
+            Delete Product
+          </button>
         </div>
-
-
       </div>
     </div>
   );

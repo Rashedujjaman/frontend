@@ -74,3 +74,17 @@
 .register-link .register-btn:hover{
   text-decoration: underline;
 }
+
+.forgot-password{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.forgot-password .forgot-password-btn{
+  color: #ffbf00;
+  text-decoration: none;
+}
+
+.forgot-password .forgot-password-btn:hover{
+  text-decoration: underline;
+}
