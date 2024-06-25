@@ -241,7 +241,7 @@ function Report() {
       {!loading && !error && (
         <div className="chart-container">
           <div className="chart-section">
-            <h3>Weekly Sales</h3>
+            <h3>Sales Trend</h3>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={dailySalesData}>
                 <CartesianGrid strokeDasharray="3 3" />
