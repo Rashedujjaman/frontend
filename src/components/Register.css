@@ -23,7 +23,7 @@
 
 .register-form label {
   margin-bottom: 5px;
-  color: rgb(0, 0, 0); /* Black label text color */
+  color: rgb(255,255,250); /* Black label text color */
 }
 
 .register-form input {

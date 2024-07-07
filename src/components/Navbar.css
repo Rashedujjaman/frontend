@@ -1,42 +1,58 @@
 .navbar {
-    background-color: #333; /* Example background color */
-    color: white;
-    padding: 15px;
-  }
-  
+  background-color: #333;
+  color: white;
+  padding: 15px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navbar li {
+  margin: 0 10px;
+}
+
+.navbar li:first-child {
+  margin-right: auto;
+}
+
+.navbar button {
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar button:hover {
+  text-decoration: underline;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
   .navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
+
   .navbar li {
-    margin: 0 10px;
+    margin: 10px 0;
   }
 
   .navbar li:first-child {
-    margin-right: auto;
+    margin-right: 0;
   }
-
-  .navbar button{
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  .navbar button:hover{
-    text-decoration: underline;
-  }
-  
-  .navbar a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .navbar a:hover {
-    text-decoration: underline;
-  }
-  
+}

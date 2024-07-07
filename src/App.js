@@ -14,9 +14,11 @@ import Profile from "./components/Profile";
 import Navbar from "./components/Navbar";
 import Orders from "./components/Orders";
 import Report from "./components/Report.jsx";
+import ForgetPassword from "./components/ForgetPassword.js";
 import { auth } from "./services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -50,6 +52,7 @@ function App() {
           isAuthenticated={isAuthenticated}
           handleLogout={handleLogout} // Pass handleLogout as prop
         />
+        <ToastContainer/>
         <Routes>
         <Route index element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />} />
           <Route
@@ -76,6 +79,7 @@ function App() {
           <Route path="/customers" element={<Customers/>} />
           <Route path="/orders" element={<Orders/>}/>
           <Route path="/report" element={<Report/>}/>
+          <Route path="/forget-password" element={<ForgetPassword/>}/>
         </Routes>
       </div>
     </Router>
