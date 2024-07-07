@@ -102,6 +102,7 @@ function Report() {
     window.print();
   };
 
+  //Generating Order Table
   const columns = [
     { field: "id", headerName: "Order ID", width: 150 },
     { field: "name", headerName: "Customer Name", width: 200 },
